@@ -10,10 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     @RequestMapping("")
-    public String home(){
+    public String home() {
         return "main";
     }
 
     @RequestMapping("donation")
-    public String donation(){return "donation";}
+    public String donation() {
+        return "donation";
+    }
+
+    @RequestMapping("donationList")
+    public String donationList() {
+        return "donationList";
+    }
 }

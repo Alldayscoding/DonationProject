@@ -46,15 +46,16 @@
 <!-- 일시 후원 프로젝트 목록 끝 -->
 
 <!-- command 시작 -->
-<section class="mb-5">
+<section class="commentsSection">
     <div class="container">
         <div class="row">
             <div class="offset-xl-1 col-xl-7 col-lg-8 ">
                 <div class="card bg-light rounded-3">
                     <div class="card-body">
                         <!-- Comment form-->
-                        <form class="mb-4"><textarea class="form-control" rows="3" placeholder="따듯한 마음을 표현하세요!"></textarea>
-                            <button class="btn btn-outline-primary mt-3">등록</button>
+                        <form class="mb-4" onsubmit="postComment(event)">
+                            <textarea id="commentText" class="form-control" rows="3" placeholder="Leave a comment..."></textarea>
+                            <button class="btn btn-outline-primary mt-3">Post</button>
                         </form>
                         <!-- Comment with nested comments-->
                         <div class="d-flex mb-4">
@@ -87,6 +88,7 @@
                             <div class="ms-3">
                                 <div class="fw-bold">Commenter Name</div>
                                 When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
+
                             </div>
                         </div>
                     </div>
@@ -102,3 +104,82 @@
 
 
 <%@include file="includes/footer.jsp" %>
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+
+<script>
+
+    $(document).ready(function(){
+        var postNumberValue = '${board.post_number}';
+
+        var replyUL = $(".chat");
+
+        showList(1);
+
+        function showList(page){
+            replyService.getList({post_number : postNumberValue, page : page || 1}, function(replyCnt, list){
+
+                console.log("replyCnt :" + replyCnt);
+                console.log("list :" + list);
+
+                if(page == -1){
+                    pageNum = Math.ceil(replyCnt /10.0);
+                    showList(pageNum);
+                    return;
+                }
+                var str="";
+                if(list==null || list.length ==0 ){
+                    replyUL.html("");
+                    return;
+                }
+
+                for(var i=0, len=list.length || 0 ; i<len; i++){
+                    str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+                    str += "<div><div class='header'><strong class='primary-font'>"+list[i].userId+"</strong>";
+                    str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate) +"</small>";
+                    str += "</div><p>"+list[i].reply +"</p></div></li>"
+                }
+                replyUL.html(str);
+
+                showReplyPage(replyCnt);
+
+            });
+        } //showList end
+
+
+
+        var modal = $(".modal");
+        var modalInputReply = modal.find("input[name='reply']");
+        var modalInputUserId = modal.find("input[name='userId']");
+        var modalInputReplyDate = modal.find("input[name='replyDate']");
+
+        var modalModBtn = $("#modalModBtn");
+        var modalRemoveBtn = $("#modalRemoveBtn");
+        var modalRegisterBtn = $("#modalRegisterBtn");
+
+        $("#addReplyBtn").on("click", function(){
+
+            modal.find("input").val("");
+            modalInputReplyDate.closest("div").hide();
+            modal.find("button[id !='modalCloseBtn']").hide();
+            modalRegisterBtn.show();
+
+            modal.modal("show");
+        });  //Modal Show
+
+        $("#modalRegisterBtn").on("click",function(e){
+
+            var reply = {
+                reply : modalInputReply.val(),
+                userId : modalInputUserId.val(),
+                post_number : postNumberValue
+            };
+
+            replyService.add(reply, function(data){
+                alert("댓글 등록이 성공했습니다.");
+
+                modal.find("input").val("");
+                modal.modal("hide");
+
+                showList(-1);  //마지막 페이지 보여주세요.
+            });
+        });  //등록.

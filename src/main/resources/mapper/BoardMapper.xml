@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.mapper.BoardMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="post_number">
+        insert into Board(userId, category_number, target_amount, current_fundraising_amount, thumbnail_picture, contents_of_the_body, body_photo, attached_video, achievement_end_date)
+        values(#{userId}, #{category_number}, #{target_amount}, #{current_fundraising_amount}, #{thumbnail_picture}, #{contents_of_the_body}, #{body_photo}, #{attached_video}, #{achievement_end_date})
+    </insert>
+
+    <select id="read" resultType="com.ezen.domain.BoardVO" parameterType="Long">
+        select * from Board where post_number = #{post_number}
+    </select>
+
+    <delete id="delete">
+        delete from Board where post_number = #{post_number}
+    </delete>
+
+    <update id="update">
+        update Board set
+        category_number = #{category_number},
+        target_amount = #{target_amount},
+        current_fundraising_amount = #{current_fundraising_amount},
+        thumbnail_picture = #{thumbnail_picture},
+        contents_of_the_body = #{contents_of_the_body},
+        body_photo = #{body_photo},
+        attached_video = #{attached_video},
+        achievement_end_date = #{achievement_end_date}
+        where post_number = #{post_number}
+    </update>
+
+    <select id="getListWithPaging" resultType="com.ezen.domain.BoardVO">
+        select post_number, userId, category_number, target_amount, current_fundraising_amount, thumbnail_picture, contents_of_the_body, body_photo, attached_video, achievement_end_date
+        from Board
+        where post_number > 0
+        order by post_number desc
+        limit #{cri.amount} offset #{cri.pageNum} * #{cri.amount}
+    </select>
+
+    <select id="getCountByUserId" resultType="int">
+        select count(post_number) from Board where userId = #{userId}
+    </select>
+
+</mapper>

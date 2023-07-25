@@ -35,7 +35,7 @@
 <!-- 네비게이션 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top">
     <div class="container">
-        <a href="index.html" class="navbar-brand align-middle">
+        <a href="" class="navbar-brand align-middle">
             <h3 class="m-0">
                 <img src="resources/assets/images/bootstrap-logo.png" alt="Logo" height="36px">
                 My BS5 web
@@ -53,7 +53,7 @@
                   </a>
                 </li> -->
                 <li class="nav-item">
-                    <a href="donation.html" class="nav-link">
+                    <a href="donationList" class="nav-link">
                         일시후원
                     </a>
                 </li>

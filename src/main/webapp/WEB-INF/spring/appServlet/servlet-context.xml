@@ -17,7 +17,7 @@
     <resources mapping="/resources/**" location="/resources/" />
 
     <context:component-scan base-package="com.ezen.controller" />
-    <context:component-scan base-package="com.ezen.exception" />
+<!--    <context:component-scan base-package="com.ezen.exception" />-->
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
