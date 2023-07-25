@@ -14,4 +14,6 @@ public class HomeController {
         return "main";
     }
 
+    @RequestMapping("donation")
+    public String donation(){return "donation";}
 }
