@@ -9,31 +9,4 @@
         values(#{post_number}, #{reply}, #{userId})
     </insert>
 
-    <select id="read" resultType="com.ezen.domain.ReplyVO" parameterType="Long">
-        select * from Reply where rno = #{rno}
-    </select>
-
-    <delete id="delete">
-        delete from Reply where rno = #{rno}
-    </delete>
-
-    <update id="update">
-        update Reply set
-        reply = #{reply},
-        updateDate = NOW()
-        where rno = #{rno}
-    </update>
-
-    <select id="getListWithPaging" resultType="com.ezen.domain.ReplyVO">
-        select rno, post_number, reply, userId, replyDate, updateDate
-        from Reply
-        where post_number = #{post_number}
-        and rno > 0
-        order by rno desc
-        limit #{cri.amount} offset #{cri.pageNum} * #{cri.amount}
-    </select>
-
-    <select id="getCountByBno" resultType="int">
-        select count(rno) from Reply where post_number = #{post_number}
-    </select>
 </mapper>
