@@ -2,18 +2,16 @@
 
 <%@include file="../includes/header.jsp" %>
 
-    <style>
-        #sidebar{
-            position: fixed;
-            right: 68%;
-            top: 130px;
-            margin-right: -720px;
-            text-align:center;
-            width: 5%;
-
-        }
-
-    </style>
+<style>
+    #sidebar{
+        position: fixed;
+        right: 68%;
+        top: 130px;
+        margin-right: -720px;
+        text-align:center;
+        width: 5%;
+    }
+</style>
 
 <body>
 

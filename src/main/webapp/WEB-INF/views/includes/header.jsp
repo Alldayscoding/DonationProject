@@ -80,7 +80,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="signup.html" class="nav-link" >
+                    <a href="/login" class="nav-link" id="login" >
                         로그인
                     </a>
                 </li>
@@ -90,3 +90,10 @@
 </nav>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function (){
+
+    });
+
+
+</script>

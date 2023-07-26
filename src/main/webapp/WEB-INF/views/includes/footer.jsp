@@ -7,8 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
-
 <!-- Footer 시작 -->
 <div class="container">
     <footer class="py-3 my-4">
