@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ezen.mapper.ReplyMapper">
+    <insert id="insert" parameterType="com.ezen.domain.ReplyVO">
+        insert into reply(post_number, reply, userId)
+        values (#{post_number}, #{reply}, #{userId})
+    </insert>
+</mapper>
+

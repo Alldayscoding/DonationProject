@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class ReplyVO {
     private Long rno;
-    private Long bno;
+    private Long post_number;
     private String reply;
     private String userId;
     private Date replyDate;
