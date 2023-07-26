@@ -7,11 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="includes/header.jsp" %>
+
+
 <!-- 일시 후원 프로젝트 목록 -->
 <div class="container">
     <div class="row mt-5">
         <div class="offset-xl-1 col-xl-7 col-lg-8 ">
-            <div class="donate_view_thumb" style="background-image: url('../resources/assets/images/bg1.jpg');"></div>
+            <div class="donate_view_thumb" style="background-image: url('resources/assets/images/bg1.jpg');"></div>
         </div>
 
         <div class="col-xl-3 col-lg-4" id="sidebar">

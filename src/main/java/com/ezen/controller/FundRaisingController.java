@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class FundRaisingController {
 
-
     /*mapping reqeust 수정해야함.*/
-    @GetMapping("/donation")
+    @GetMapping("/donation")  //  /donation/ <- 뒤에 / 붙이면 안됨.
     public String donation(){
-        return "donation/donation";
+        log.info("donation...........page");
+        return "donation";
     }
 
 
